@@ -2,6 +2,15 @@
 .main {
   --gap: 2rem;
 
+
+  --padding: 3rem;
+  @include for-size("<=xs") {
+   --padding: 2.5rem;
+  }
+  @include for-size("<=xxs") {
+    --padding: 2rem;
+  }
+
   margin: var(--gap);
   display: grid;
   height: 100%;
@@ -19,7 +28,7 @@
 
 
   .logo {
-    padding: 3rem;
+    padding: var(--padding);
     border-radius: var(--border-radius);
     background: var(--bg-primary);
     grid-column: 1;
@@ -85,18 +94,18 @@
     grid-row: 2/-1;
     grid-column: 1/-2;
 
-    @include for-size("<=xs") {
-      grid-column: 1;
-      grid-row: 2;
-    }
 
-    padding: 3rem;
+    padding: var(--padding);
     padding-top: 10rem;
 
     gap: 2.5rem;
 
     display: grid;
     align-content: end;
+    @include for-size("<=xs") {
+      grid-column: 1;
+      grid-row: 2;
+    }
 
     .heading {
       display: flex;
@@ -108,7 +117,7 @@
 
   .button {
     text-align: center;
-    padding: 3rem;
+    padding: var(--padding);
     border-radius: var(--border-radius);
     background: var(--fp-primary-color);
     grid-column: 3;
