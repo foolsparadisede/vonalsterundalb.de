@@ -1,13 +1,14 @@
 @import "@/styles/mixins";
+
 .main {
   --gap: 2rem;
-
-
   --padding: 3rem;
   @include for-size("<=xs") {
-   --padding: 2.5rem;
+    --gap: 1.75rem;
+    --padding: 2.5rem;
   }
   @include for-size("<=xxs") {
+    --gap: 1.5rem;
     --padding: 2rem;
   }
 
@@ -44,6 +45,9 @@
       height: 4rem !important;
       max-width: 100% !important;
       width: auto !important;
+    @include for-size("<=xs") {
+      height: 3.5rem !important;
+    }
     }
 
     @include for-size(">=s") {
@@ -82,7 +86,7 @@
     overflow: hidden;
 
     @include for-size("<=xs") {
-    z-index: 2;
+      z-index: 2;
       grid-column: 1;
       grid-row: 2;
       background: transparent;
@@ -103,6 +107,7 @@
     display: grid;
     align-content: end;
     @include for-size("<=xs") {
+    padding-top: 7rem;
       grid-column: 1;
       grid-row: 2;
     }
