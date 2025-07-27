@@ -1,0 +1,45 @@
+name: "Node + deps + cache"
+description: |
+  Sets up Node, writes ~/.yarnrc.yml, caches dependencies, 
+  and runs `yarn install` in immutable mode.
+
+inputs:
+  node-version-file:
+    description: 'Path to .nvmrc or .node-version'
+    required: true
+  npm-token:
+    description: 'Auth token for private registry'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: 🟢 Set up Node
+      uses: actions/setup-node@v4
+      with:
+        node-version-file: ${{ inputs.node-version-file }}
+        cache: "yarn"
+
+    - name: Setup .yarnrc.yml
+      shell: bash
+      run: |
+        cat <<EOF > ~/.yarnrc.yml
+        npmRegistries:
+          "https://npm.foolsparadise.de":
+            npmAuthToken: ${{ inputs.npm-token }}
+        EOF
+
+    - name: Cache dependencies
+      uses: actions/cache@v3
+      with:
+        path: |
+          .yarn/cache
+          .yarn/install-state.gz
+          node_modules
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
+
+    - name: 📦 Install dependencies
+      shell: bash
+      run: yarn install --immutable

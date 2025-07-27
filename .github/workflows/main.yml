@@ -1,0 +1,130 @@
+name: CI / CD
+
+on:
+  push:
+    branches: ["**"]
+    tags: ["v*.*.*"]
+  workflow_dispatch:
+
+env:
+  VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+  VERCEL_PROJECT: vonalsterundalb.de
+
+jobs:
+  build:
+    if: github.ref_type == 'branch' && github.ref_name != 'main' && github.ref_name != 'staging'
+    runs-on: ubuntu-latest
+    container: node:24-bookworm
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node + deps
+        uses: ./.github/actions/node-setup
+        with:
+          node-version-file: .nvmrc
+          npm-token: ${{ secrets.NPM_TOKEN }}
+
+      - name: Install Vercel CLI
+        run: yarn add vercel
+
+      - name: 🔗 Link Vercel Project
+        run: yarn vercel link --yes --project=$VERCEL_PROJECT --token=$VERCEL_TOKEN
+
+      - name: 🔄 Pull Vercel environment (production)
+        run: yarn vercel pull --yes --environment=production --token=$VERCEL_TOKEN
+
+      - name: 🛠️  Build (prod)
+        run: yarn vercel build --prod --token=$VERCEL_TOKEN
+
+  semantic-release:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    outputs:
+      new_release_published: ${{ steps.semantic.outputs.new_release_published }}
+      new_release_version: 'v${{ steps.semantic.outputs.new_release_version }}'
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "lts/*"
+
+      - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@v4
+        id: semantic   # Need an `id` for output variables
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  deploy:
+    name: Deploy Tagged Version to Production
+    needs: [semantic-release]
+    if: needs.semantic-release.outputs.new_release_published == 'true' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    container: node:20-bookworm
+
+    env:
+      NEXT_PUBLIC_VERSION: ${{ needs.semantic-release.outputs.new_release_version }}   # e.g. v1.2.3
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node + deps
+        uses: ./.github/actions/node-setup
+        with:
+          node-version-file: .nvmrc
+          npm-token: ${{ secrets.NPM_TOKEN }}
+
+      - name: Install Vercel CLI
+        run: yarn add vercel
+
+      - name: 🔗 Link Vercel Project
+        run: yarn vercel link --yes --project=$VERCEL_PROJECT --token=$VERCEL_TOKEN
+
+      - name: 🔄 Pull Vercel environment (production)
+        run: yarn vercel pull --yes --environment=production --token=$VERCEL_TOKEN
+
+      - name: 🏗️ Production Build
+        run: yarn vercel build --prod --token=$VERCEL_TOKEN
+
+      - name: 🚀 Production Deploy
+        run: yarn vercel deploy --prod --prebuilt --token=$VERCEL_TOKEN
+
+  deploy-staging:
+    if: github.ref_name == 'staging'
+    runs-on: ubuntu-latest
+    container: node:24-bookworm
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node + deps
+        uses: ./.github/actions/node-setup
+        with:
+          node-version-file: .nvmrc
+          npm-token: ${{ secrets.NPM_TOKEN }}
+
+      - name: Install Vercel CLI
+        run: yarn add vercel
+
+      - name: 🔗 Link Vercel Project
+        run: yarn vercel link --yes --project=$VERCEL_PROJECT --token=$VERCEL_TOKEN
+
+      - name: 🔄 Pull Vercel environment (production)
+        run: yarn vercel pull --yes --environment=production --token=$VERCEL_TOKEN
+
+      - name: 🏗️ Production Build
+        run: yarn vercel build --token=$VERCEL_TOKEN
+
+      - name: 🚀 Production Deploy
+        run: yarn vercel deploy --prebuilt --token=$VERCEL_TOKEN

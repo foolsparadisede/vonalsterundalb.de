@@ -1,0 +1,91 @@
+@import "node_modules/@foolsparadise/base-style/mixins";
+
+@mixin onlyNLinesOfText($numberOfLines) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $numberOfLines;
+  -webkit-box-orient: vertical;
+}
+
+
+@mixin mask($cornerSize, $borderRadius) {
+
+  --corner-size: #{$cornerSize};
+  overflow: hidden;
+
+  border-radius: $borderRadius;
+  mask-image:  url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1" preserveAspectRatio="none"><polygon style="fill:white;" points="0,0, 1,0, 1,1 0,1 "/></svg>'), url("/images/corner-mask-top-right.svg"), url("/images/corner-mask-bottom-left.svg");
+  mask-position: top left, top right, bottom left;
+  mask-size: 100% 100%, var(--corner-size) var(--corner-size), var(--corner-size) var(--corner-size);
+  mask-repeat: no-repeat;
+  mask-mode: luminance;
+  mask-composite: subtract, add, add;
+}
+
+@mixin maskContactBadge($cornerSize, $borderRadius) {
+
+  overflow: hidden;
+
+  border-top-left-radius: $borderRadius;
+  border-bottom-left-radius: $borderRadius;
+  mask-image:  url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1" preserveAspectRatio="none"><polygon style="fill:white;" points="0,0, 1,0, 1,1 0,1 "/></svg>'), url("/images/contact-badge-mask.svg");
+  mask-position: top left, bottom left;
+  mask-size: 100% 100%, $cornerSize;
+  mask-repeat: no-repeat;
+  mask-mode: luminance;
+  mask-composite: subtract, add;
+}
+
+@mixin maskBadge($cornerSize) {
+
+  overflow: hidden;
+  --corner-size: #{$cornerSize};
+
+  mask-image: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1" preserveAspectRatio="none"><polygon style="fill:white;" points="0,0, 1,0, 1,1 0,1 "/></svg>'), url("/images/corner-mask-bottom-left.svg"), url("/images/corner-mask-bottom-right.svg");
+  mask-size: 100% 100%, var(--corner-size) var(--corner-size), var(--corner-size) var(--corner-size);
+  mask-position: center, bottom left, bottom right;
+  mask-repeat: no-repeat;
+  mask-mode: luminance;
+  mask-composite: subtract, add, add;
+}
+
+
+
+@mixin hideScrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+}
+
+@mixin grain {
+  background: url("/images/grain.png") repeat, linear-gradient(135deg, var(--tori--dark), var(--tori--main)) no-repeat !important;
+  background-size: 250px 250px, 100% 100% !important;
+  //background: url("/images/grain.png") repeat, linear-gradient(135deg, var(--tori--dark), var(--tori--main)) no-repeat;
+  //background-blend-mode: soft-light !important;
+}
+@mixin notTouchDeviceAndNoHover {
+  @media not ((hover: none) and (pointer: coarse)) {
+    &:not(:hover) {
+      &:not(:focus-within) {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin touchDevice {
+  @media ((hover: none) and (pointer: coarse)) {
+    @content;
+  }
+}
+
+@mixin noUserSelect {
+  user-select: none;
+  -webkit-touch-callout: none !important;
+  -webkit-user-drag: none !important;
+}

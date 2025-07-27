@@ -1,0 +1,46 @@
+{
+  "name": "vonalsterundalb.de",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@brynlabs/consent-next": "^1.0.0-rc4",
+    "@foolsparadise/base-style": "^3.0.0",
+    "@types/platform": "^1.3.6",
+    "classnames": "^2.5.1",
+    "dayjs": "^1.11.13",
+    "motion": "^12.23.9",
+    "next": "15.4.4",
+    "platform": "^1.3.6",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-fast-marquee": "^1.6.5",
+    "sass": "^1.89.2",
+    "sharp": "^0.34.3",
+    "usehooks-ts": "^3.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.1.0",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "eslint": "^9.32.0",
+    "eslint-config-next": "15.4.4",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.3",
+    "eslint-plugin-react-compiler": "^19.1.0-rc.2",
+    "postcss": "^8.5.6",
+    "prettier": "^3.6.2",
+    "server-only": "^0.0.1",
+    "stylelint": "^16.22.0",
+    "stylelint-config-standard": "^38.0.0",
+    "stylelint-prettier": "^5.0.3",
+    "stylelint-scss": "^6.12.1",
+    "typescript": "^5.8.3"
+  },
+  "packageManager": "yarn@4.9.2"
+}

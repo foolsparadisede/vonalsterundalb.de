@@ -1,0 +1,157 @@
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/InterVariable.ttf') format('truetype');
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+}
+
+@font-face {
+  font-family: 'TT Travels Next';
+  src: url('/fonts/TT Travels Next Bold.otf') format('opentype');
+  font-style: normal;
+  font-display: swap;
+  font-weight: 800;
+}
+
+
+:root {
+  font-size: 14px;
+
+  @media (min-width: 1500px) {
+    font-size: 15px;
+  }
+  @media (min-width: 2000px) {
+    font-size: 16px;
+  }
+  @media (min-width: 2500px) {
+    font-size: 17px;
+  }
+
+  @include for-size("<=s") {
+    font-size: 13px;
+  }
+}
+
+:root,
+.fp-base-style-scope {
+  hyphens: auto;
+  hyphenate-limit-chars: 10 10 10;
+
+  --fp-font--font-family: 'Inter', sans-serif;
+  --fp-font-heading--font-family: 'TT Travels Next', sans-serif;
+  --fp-font-heading--text-transform: uppercase;
+
+
+  --fp-font-body-paragraph--font-size: 1.15rem;
+  --fp-font-body-paragraph--line-height: 1.4;
+  --fp-font-body-paragraph-small--font-size: 1rem;
+  --fp-font-body-paragraph-large--font-size: 1.3rem;
+
+  --fp-font-heading-1--font-size: calc(0.04 * (100vw - 2 * var(--fp-global-container-padding)) + 3rem);
+  --fp-font-heading-2--font-size: calc(0.015 * (100vw - 2 * var(--fp-global-container-padding)) + 1.8rem);
+  --fp-font-heading-3--font-size: calc(0.008 * (100vw - 2 * var(--fp-global-container-padding)) + 1.5rem);
+  --fp-font-heading-4--font-size: calc(0.0045 * (100vw - 2 * var(--fp-global-container-padding)) + 1.4rem);
+  --fp-font-heading-5--font-size: calc(0.0020 * (100vw - 2 * var(--fp-global-container-padding)) + 1.3rem);
+  --fp-font-heading-6--font-size: calc(0.0012 * (100vw - 2 * var(--fp-global-container-padding)) + 1.2rem);
+
+  --fp-font-heading-1--font-weight: 800;
+  --fp-font-heading-2--font-weight: 800;
+  --fp-font-heading-3--font-weight: 800;
+  --fp-font-heading-4--font-weight: 800;
+  --fp-font-heading-5--font-weight: 800;
+  --fp-font-heading-6--font-weight: 800;
+  --fp-font-body-paragraph--font-weight: 400;
+}
+
+h1,
+.fp-heading-1,
+h2,
+.fp-heading-2,
+h3,
+.fp-heading-3,
+h4,
+.fp-heading-4,
+h5,
+.fp-heading-5,
+h6,
+.fp-heading-6 {
+  text-wrap: balance;
+  margin: 0;
+  font-family: var(--fp-font-heading--font-family), sans-serif;
+  line-height: 1;
+}
+
+p,
+small,
+.fp-paragraph,
+.fp-paragraph-large,
+.fp-paragraph-small {
+  margin: 0;
+
+  * {
+    line-height: inherit;
+  }
+}
+.fp-paragraph-large {
+  font-size: var(--fp-font-body-paragraph-large--font-size);
+  line-height: 1.4
+}
+
+
+.fp-link a,
+a.fp-link,
+.fp-link {
+  line-height: 1;
+  text-decoration: none;
+  transition: none;
+  cursor: pointer;
+  background: none;
+  outline: none;
+  border: 0;
+  font-weight: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  border-radius: var(--border-radius--xs);
+  color: white;
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+
+  &:hover,
+  &:focus-visible {
+    color: white;
+    text-decoration: underline;
+  }
+
+  &--secondary {
+    color: inherit;
+    &:hover,
+    &:focus-visible {
+      color: inherit;
+    }
+  }
+}
+
+strong {
+  font-weight: 800;
+}
+
+.pre-line {
+  white-space: pre-line;
+}
+
+.white-text {
+  color: white;
+}
+
+.primary-text {
+  color: var(--fp-primary-color);
+}
+
+
+.gray-text {
+  color: var(--text-light);
+}

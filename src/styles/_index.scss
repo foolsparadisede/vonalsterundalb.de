@@ -1,0 +1,33 @@
+@import '/node_modules/@foolsparadise/base-style';
+@import 'mixins';
+@import 'font';
+@import 'color';
+@import 'border-radius';
+@import 'spacing';
+@import 'timing';
+@import 'typebase';
+
+html {
+  background: var(--bg-secondary);
+}
+
+body {
+  margin: 0;
+  width: 100%;
+  display: flex;
+  overflow-x: hidden;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+button {
+  box-sizing: border-box;
+  text-align: unset;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+  font-feature-settings: "liga" 0;
+  font-variant-ligatures: none;
+}
