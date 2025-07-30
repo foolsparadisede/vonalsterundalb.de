@@ -14,6 +14,7 @@ const services = [
   "Brand Experiences",
   "Content",
   "Campaigns",
+  "Consulting",
   "Strategy",
 ];
 
