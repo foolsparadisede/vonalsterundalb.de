@@ -26,6 +26,7 @@ export const metadata: Metadata = {
     canonical: process.env.HOST,
     languages: {
       en: process.env.HOST,
+      de: process.env.HOST + "/de",
     },
   },
 };
