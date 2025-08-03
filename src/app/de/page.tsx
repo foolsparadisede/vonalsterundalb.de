@@ -1,4 +1,4 @@
-import styles from "./page.module.scss";
+import styles from "../page.module.scss";
 import logo from "@/assets/logo.svg";
 import Image from "next/image";
 import classNames from "~/classnames";
@@ -9,23 +9,23 @@ const services = [
   "Branding",
   "Performance-Marketing",
   "Design",
-  "Development",
+  "Entwicklung",
   "Apps",
-  "Brand Experiences",
+  "Marken-Erlebnisse",
   "Content",
-  "Campaigns",
-  "Consulting",
-  "Strategy",
+  "Kampagnen",
+  "Beratung",
+  "Strategie",
 ];
 
 export const metadata: Metadata = {
-  title: "Von Alster & Alb — Marketing & Consulting Agency Group",
+  title: "Von Alster & Alb — Marketing- und Beratungsagentur-Gruppe",
   description:
-    "Von Alster & Alb is a group of forward-thinking agencies based in Hamburg, Germany, serving diverse markets with sharp strategy, creative marketing, and results-driven consulting. We help brands grow, adapt, and lead in a changing world.",
+    "Von Alster & Alb ist ein Zusammenschluss zukunftsorientierter Agenturen mit Sitz in Hamburg, Deutschland. Wir bedienen vielfältige Märkte mit durchdachter Strategie, kreativer Markenkommunikation und ergebnisorientierter Beratung. Unser Ziel ist es, Marken beim Wachsen, Anpassen und Führen in einer sich wandelnden Welt zu unterstützen.",
   alternates: {
-    canonical: process.env.HOST + "/de",
+    canonical: process.env.HOST,
     languages: {
-      de: process.env.HOST + "/de",
+      en: process.env.HOST,
     },
   },
 };
@@ -55,29 +55,29 @@ export default function Page() {
       </div>
       <div className={styles.bgElement2}>
         <div className={styles.heading}>
-          <h5 className={"fp-heading-5 primary-text"}>Von Alster & Alb Group</h5>
+          <h5 className={"fp-heading-5 primary-text"}>Von Alster & Alb Gruppe</h5>
           <h1 className={"fp-heading-1"}>Change is our Output.</h1>
         </div>
         <p className={classNames("fp-paragraph", styles.text)}>
-          Based in Hamburg, Germany, Von Alster & Alb Group is a collective of visionary marketing
-          and consulting agencies dedicated to redefining how brands connect, grow, and lead. Rooted
-          in German precision and inspired by global trends, we partner with ambitious businesses to
-          navigate complexity, unlock potential, and create lasting impact.
+          Die Von Alster & Alb Group mit Sitz in Hamburg ist ein Kollektiv visionärer Marketing- und
+          Beratungsagenturen – mit dem Anspruch, Markenführung neu zu denken. Wir verbinden deutsche
+          Präzision mit globalem Weitblick, um Unternehmen dabei zu unterstützen, Komplexität zu
+          meistern, Chancen zu nutzen und Wirkung zu entfalten.
           <br />
           <br />
-          From strategic consulting to creative marketing execution, our group brings together sharp
-          minds, diverse expertise, and a shared commitment to excellence. We don’t just react to
-          change — we anticipate it, helping our clients stay ahead in a fast-moving world.
+          Ob Strategie oder Kreation: Unsere interdisziplinären Teams vereinen Expertise mit
+          Haltung. Wir denken nicht in Silos, sondern in Lösungen – und helfen unseren Kunden, dem
+          Wandel nicht nur zu begegnen, sondern ihm voraus zu sein.
           <br />
           <br />
-          <strong>Let’s build what’s next — together.</strong>
+          <strong>Gestalten wir, was als Nächstes kommt – gemeinsam.</strong>
         </p>
       </div>
 
       <a
         href={"mailto:hi@vonalsterundalb.de"}
         className={classNames(styles.button, "fp-link fp-link--primary")}>
-        <h4 className={"fp-heading-4 white-text"}>Get In Touch</h4>
+        <h4 className={"fp-heading-4 white-text"}>Kontakt aufnehmen</h4>
       </a>
     </main>
   );

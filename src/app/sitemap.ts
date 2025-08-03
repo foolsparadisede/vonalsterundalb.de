@@ -6,5 +6,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: process.env.HOST + "/",
       lastModified: new Date(),
     },
+    {
+      url: process.env.HOST + "/de",
+      lastModified: new Date(),
+    },
   ];
 }
