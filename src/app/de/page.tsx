@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   description:
     "Von Alster & Alb ist ein Zusammenschluss zukunftsorientierter Agenturen mit Sitz in Hamburg, Deutschland. Wir bedienen vielfältige Märkte mit durchdachter Strategie, kreativer Markenkommunikation und ergebnisorientierter Beratung. Unser Ziel ist es, Marken beim Wachsen, Anpassen und Führen in einer sich wandelnden Welt zu unterstützen.",
   alternates: {
-    canonical: process.env.HOST,
+    canonical: process.env.HOST + "/de",
     languages: {
       en: process.env.HOST,
       de: process.env.HOST + "/de",

@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   description:
     "Von Alster & Alb is a group of forward-thinking agencies based in Hamburg, Germany, serving diverse markets with sharp strategy, creative marketing, and results-driven consulting. We help brands grow, adapt, and lead in a changing world.",
   alternates: {
-    canonical: process.env.HOST + "/de",
+    canonical: process.env.HOST,
     languages: {
       en: process.env.HOST,
       de: process.env.HOST + "/de",
