@@ -1,4 +1,4 @@
-import styles from "./page.module.scss";
+import styles from "../page.module.scss";
 import logo from "@/assets/logo.svg";
 import Image from "next/image";
 import classNames from "~/classnames";
