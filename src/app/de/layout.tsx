@@ -5,7 +5,7 @@ import {Inter} from "next/font/google";
 import classNames from "~/classnames";
 
 const tttravels = localFont({
-  src: "../assets/TT Travels Next Bold.otf",
+  src: "../../assets/TT Travels Next Bold.otf",
   display: "swap",
   variable: "--tttravels",
 });
